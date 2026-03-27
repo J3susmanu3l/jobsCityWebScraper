@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+src/jobs_scraper/__init__.py
+src/jobs_scraper/__main__.py
+src/jobs_scraper/config.py
+src/jobs_scraper/email_finder.py
+src/jobs_scraper/exporter.py
+src/jobs_scraper/google_places.py
+src/jobs_scraper/main.py
+src/jobs_scraper/models.py
+src/jobs_web_scraper.egg-info/PKG-INFO
+src/jobs_web_scraper.egg-info/SOURCES.txt
+src/jobs_web_scraper.egg-info/dependency_links.txt
+src/jobs_web_scraper.egg-info/entry_points.txt
+src/jobs_web_scraper.egg-info/requires.txt
+src/jobs_web_scraper.egg-info/top_level.txt
+tests/test_email_finder.py

@@ -1,0 +1,2 @@
+[console_scripts]
+jobs-scraper = jobs_scraper.main:main

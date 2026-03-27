@@ -1,0 +1,97 @@
+Metadata-Version: 2.4
+Name: jobs-web-scraper
+Version: 0.1.0
+Summary: Collect business leads by city and category with contact details.
+Author: Local User
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.32.0
+Requires-Dist: python-dotenv>=1.0.1
+Requires-Dist: pydantic>=2.7.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.2.0; extra == "dev"
+
+# Jobs/Business Scraper Starter
+
+This project collects local business data for a chosen city and category, then exports:
+
+- company name
+- phone number
+- email (from website crawl when available)
+- website
+- address
+- Google place id
+
+## Important note
+
+This starter uses the **Google Places API** for listing/place details instead of browser automation scraping, which is generally more stable and compliance-friendly. You are responsible for using APIs and collected data according to the providers' terms and local laws.
+
+## Project structure
+
+```text
+jobsWebScraper/
+  src/jobs_scraper/
+    config.py
+    email_finder.py
+    exporter.py
+    google_places.py
+    main.py
+    models.py
+  tests/
+  scripts/
+  output/
+  .env.example
+  pyproject.toml
+  README.md
+```
+
+## 1) Requirements
+
+- Python 3.10+
+- A Google Maps Platform API key with Places API enabled
+
+## 2) Setup
+
+```bash
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -e .[dev]
+copy .env.example .env
+```
+
+Then open `.env` and set `GOOGLE_MAPS_API_KEY`.
+
+## 3) Run
+
+```bash
+python -m jobs_scraper.main --city "Denver, CO" --query "restaurants" --max-results 50
+```
+
+Or PowerShell helper:
+
+```powershell
+.\scripts\run.ps1 -City "Denver, CO" -Query "restaurants" -MaxResults 50
+```
+
+## 4) Output
+
+Files are generated in `output/`:
+
+- `*.csv`
+- `*.json`
+
+## 5) Common examples
+
+```bash
+python -m jobs_scraper.main --city "Austin, TX" --query "roofing companies" --max-results 80
+python -m jobs_scraper.main --city "Chicago, IL" --query "dental clinic" --skip-email-crawl
+```
+
+## 6) Next upgrades (optional)
+
+- Add deduplication by domain + phone
+- Add retries/backoff for rate limits
+- Add proxy support for website crawling
+- Add SQLite/PostgreSQL persistence
+- Add Dockerfile and scheduled runs
+
